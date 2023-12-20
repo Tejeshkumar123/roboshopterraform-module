@@ -56,7 +56,7 @@ resource "aws_instance" "web" {
 ############create route53 using terraform####################
 resource "aws_route53_record" "www" {
   zone_id = "Z09755513LWICQ8RRTK8W"
-  name    = "${var.component}.${var.env}"
+  name    = "${var.component}-${var.env}"
   type    = "A"
   ttl     = 300
   records = [aws_instance.web.private_ip]
