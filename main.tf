@@ -72,7 +72,9 @@ resource "null_resource" "null" {
       host     = aws_instance.web.public_ip
     }
     inline = [
-      "sudo labauto ansible",
+      "sudo yum install python3.11-devel -y",
+      "sudo yum install python3.11-pip -y",
+      "pip3.11 install ansible botocore boto3 python-jenkins",
       "ansible-pull -i localhost, -U https://github.com/Tejeshkumar123/drycode-ansible.git roboshop.yml -e env=dev -e role_name=${var.component}"
     ]
   }
